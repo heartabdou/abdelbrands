@@ -11,7 +11,7 @@ export const PROJECTS: Project[] = [
     title: 'Aura Skincare',
     category: 'Packaging',
     description: 'Eco-conscious minimal glass packaging for premium organic skincare.',
-    imageUrl: 'https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?q=80&w=2000&auto=format&fit=crop',
+    imageUrl: 'https://github.com/heartabdou/abdelbrands/blob/386d9c991f425c4c263f3641213a20fceaf228d0/images/Dimples.jpg?raw=true&auto=format&fit=crop',
     year: '2023',
     client: 'Aura London',
     fullStory: 'The challenge was to create a luxury feel using 100% recycled materials. We used matte-etched glass and debossed stone-paper labels to provide a tactile experience that reflects the purity of the ingredients.'
