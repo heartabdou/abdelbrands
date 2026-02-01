@@ -7,9 +7,23 @@ export interface Project {
   category: ProjectCategory;
   description: string;
   imageUrl: string;
+  galleryImages: string[];
   year: string;
   client: string;
+  role?: string;
+  goals?: string[];
+  challenge?: string;
+  solution?: string;
   fullStory: string;
+}
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  date: string;
+  readTime: string;
+  excerpt: string;
+  content: string;
 }
 
 export interface Testimonial {
