@@ -35,9 +35,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
           </button>
           
           <div className="hidden md:flex items-center space-x-10 text-[14px] font-black tracking-widest uppercase text-zinc-400">
-            <button onClick={() => handleNav('projects')} className="hover:text-zinc-900 transition-colors">Work</button>
-            <button onClick={() => handleNav('journal')} className="hover:text-zinc-900 transition-colors">Journal</button>
-            <button onClick={() => handleNav('about')} className="hover:text-zinc-900 transition-colors">About</button>
+            <button onClick={() => handleNav('projects')} className="nav-link hover:text-zinc-900 transition-colors">Work</button>
+            <button onClick={() => handleNav('journal')} className="nav-link hover:text-zinc-900 transition-colors">Journal</button>
+            <button onClick={() => handleNav('about')} className="nav-link hover:text-zinc-900 transition-colors">About</button>
             <button 
               onClick={() => handleNav('contact')} 
               className="border-2 border-zinc-900 px-6 py-2 text-zinc-900 rounded-full hover:bg-zinc-900 hover:text-white active:bg-zinc-800 active:text-white transition-all duration-300"

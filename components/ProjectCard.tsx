@@ -14,30 +14,32 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
   return (
     <div 
       onClick={() => onClick(project)}
-      className="group cursor-pointer overflow-hidden bg-zinc-50 border border-zinc-100"
+      className="group project-card cursor-pointer overflow-hidden bg-white"
     >
-      <div className="relative aspect-[4/5] overflow-hidden">
+      <div className="relative aspect-[4/5] img-container bg-zinc-100 rounded-sm">
         <img 
           src={optimizeImage(project.imageUrl, 800)} 
           alt={project.title}
-          className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+          className="w-full h-full object-cover grayscale group-hover:grayscale-0 img-zoom"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500" />
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-700" />
       </div>
       
-      <div className="p-6">
-        <div className="flex justify-between items-start mb-4">
-          <h3 className="text-lg font-semibold tracking-tight uppercase">{project.title}</h3>
-          <div className="flex flex-wrap gap-1 justify-end">
+      <div className="py-6 transition-all duration-700">
+        <div className="flex justify-between items-baseline mb-3">
+          <h3 className="text-xl font-bold tracking-tighter uppercase group-hover:tracking-normal transition-all duration-700">
+            {project.title}
+          </h3>
+          <div className="flex flex-wrap gap-2">
             {categories.map((cat, idx) => (
-              <span key={idx} className="text-[10px] tracking-widest uppercase font-bold text-zinc-400 border border-zinc-200 px-2 py-0.5 rounded">
+              <span key={idx} className="text-[9px] tracking-[0.2em] uppercase font-black text-zinc-300">
                 {cat}
               </span>
             ))}
           </div>
         </div>
-        <p className="text-zinc-500 text-sm leading-relaxed line-clamp-2">
+        <p className="text-zinc-400 text-sm leading-relaxed line-clamp-2 font-light">
           {project.description}
         </p>
       </div>
