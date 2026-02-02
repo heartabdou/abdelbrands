@@ -34,11 +34,14 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
             <Logo className="h-6 md:h-8 text-zinc-900 group-hover:scale-[1.02] transition-transform duration-500" />
           </button>
           
-          <div className="hidden md:flex items-center space-x-10 text-[10px] font-black tracking-widest uppercase text-zinc-400">
+          <div className="hidden md:flex items-center space-x-10 text-[14px] font-black tracking-widest uppercase text-zinc-400">
             <button onClick={() => handleNav('projects')} className="hover:text-zinc-900 transition-colors">Work</button>
             <button onClick={() => handleNav('journal')} className="hover:text-zinc-900 transition-colors">Journal</button>
             <button onClick={() => handleNav('about')} className="hover:text-zinc-900 transition-colors">About</button>
-            <button onClick={() => handleNav('contact')} className="hover:text-zinc-900 transition-colors border-2 border-zinc-900 px-6 py-2 text-zinc-900 rounded-full hover:bg-zinc-900 hover:text-white transition-all">
+            <button 
+              onClick={() => handleNav('contact')} 
+              className="border-2 border-zinc-900 px-6 py-2 text-zinc-900 rounded-full hover:bg-zinc-900 hover:text-white active:bg-zinc-800 active:text-white transition-all duration-300"
+            >
               Contact
             </button>
           </div>
@@ -69,7 +72,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
         <button onClick={() => handleNav('contact')} className="text-5xl font-black tracking-tighter uppercase text-zinc-300 hover:text-zinc-900 transition-colors">Contact</button>
         
         <div className="pt-12 text-[10px] font-black uppercase tracking-[0.5em] text-zinc-300">
-          Abdel Brands © 2024
+          Abdel Designs © 2024
         </div>
       </div>
     </>

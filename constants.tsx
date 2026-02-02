@@ -2,12 +2,19 @@
 import { Project, Testimonial, BlogPost } from './types';
 
 export const DESIGNER_NAME = "Abdel";
-export const BRAND_NAME = "abdelbrands";
+export const BRAND_NAME = "abdeldesigns";
 export const DESIGNER_TAGLINE = "Designing Digital Products & Packaging That Sell";
 export const DESIGNER_SUBHEADING = "UI/UX, web & app design, and packaging systems built to attract users and convert customers.";
 export const DESIGNER_BIO = "A UI/UX, web, and packaging designer with a background in graphic design. I help startups, eCommerce brands, and digital products create clean, functional designs that convert users into customers. My work focuses on user experience, branding, packaging design, and modern web/app interfaces, blending strategy with visual clarity.";
 
-export const DESIGNER_EMAIL = "hello@abdelbrands.com";
+/**
+ * ACTION REQUIRED: 
+ * To use your actual photo, save your image in the project root as 'me.jpg' 
+ * and change this URL to './me.jpg'
+ */
+export const DESIGNER_IMAGE = "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=2000&auto=format&fit=crop"; 
+
+export const DESIGNER_EMAIL = "hello@abdeldesigns.com";
 export const BEHANCE_URL = "https://www.behance.net/abdelkdesign";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/lkabche-abdallah/";
 
@@ -184,9 +191,50 @@ export const BLOG_POSTS: BlogPost[] = [
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't1',
-    quote: "Abdel has a rare ability to translate complex brand values into physical form. The branding didn't just look better; it felt like our mission embodied.",
-    author: "Elena Rossi",
-    role: "Creative Director",
-    company: "Aura London"
+    title: "Spectacular Design Work",
+    quote: "Working with Abdel was an amazing experience. The design was spectacular, creative, and perfectly represented our brand.",
+    author: "Burly Boyz Moving",
+    role: "Strategic Logistics",
+    company: ""
+  },
+  {
+    id: 't2',
+    title: "Highly Recommended",
+    quote: "Abdel understood the project scope, filled missing gaps, and delivered with a strong artistic eye and great responsiveness.",
+    author: "Strategic Partner",
+    role: "Agency Relations",
+    company: ""
+  },
+  {
+    id: 't3',
+    title: "Creative & Professional",
+    quote: "Abdel brought our ideas to life thoughtfully, handled changes professionally, and communicated clearly throughout the project.",
+    author: "Creative Lead",
+    role: "Brand Strategy",
+    company: ""
+  },
+  {
+    id: 't4',
+    title: "Excellent Communication",
+    quote: "Great working with Abdel. Communication and design quality were excellent from start to finish.",
+    author: "Project Manager",
+    role: "Software Development",
+    company: ""
+  },
+  {
+    id: 't5',
+    title: "Fast & Creative",
+    quote: "Very creative with quick responses. It was a pleasure working with Abdel and we hope to collaborate again.",
+    author: "Marketing Director",
+    role: "Retail Brands",
+    company: ""
+  },
+  {
+    id: 't6',
+    title: "Attention to Detail",
+    quote: "Exceptional responsiveness and attention to detail. We’ll definitely work with Abdel again for future projects.",
+    author: "Founder",
+    role: "D2C Startup",
+    company: ""
   }
 ];

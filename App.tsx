@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import ProjectCard from './components/ProjectCard';
 import AIAssistant from './components/AIAssistant';
 import Logo from './components/Logo';
-import { PROJECTS, TESTIMONIALS, DESIGNER_NAME, BRAND_NAME, DESIGNER_TAGLINE, DESIGNER_SUBHEADING, DESIGNER_BIO, BLOG_POSTS, DESIGNER_EMAIL, BEHANCE_URL, LINKEDIN_URL } from './constants';
+import { PROJECTS, TESTIMONIALS, DESIGNER_NAME, BRAND_NAME, DESIGNER_TAGLINE, DESIGNER_SUBHEADING, DESIGNER_BIO, BLOG_POSTS, DESIGNER_EMAIL, BEHANCE_URL, LINKEDIN_URL, DESIGNER_IMAGE } from './constants';
 import { Project, BlogPost } from './types';
 
 const App: React.FC = () => {
@@ -41,7 +41,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden selection:bg-zinc-900 selection:text-white">
       <Navbar onNavigate={navigateTo} />
       
       <main className="flex-grow pt-20">
@@ -154,15 +154,15 @@ const App: React.FC = () => {
 
         {/* About Section */}
         <section id="about" className="bg-zinc-900 text-white py-32 md:py-56 px-6">
-          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-24">
-            <div className="relative">
+          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-24 items-center">
+            <div className="relative max-w-sm md:max-w-md mx-auto md:mx-0">
               <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" 
-                alt="Abdel" 
-                className="w-full grayscale brightness-75 hover:brightness-100 transition-all duration-1000 rounded-sm shadow-2xl"
+                src={DESIGNER_IMAGE} 
+                alt={DESIGNER_NAME} 
+                className="w-full aspect-[3/4] object-cover grayscale brightness-75 hover:brightness-100 transition-all duration-1000 rounded-sm shadow-2xl"
               />
-              <div className="absolute -bottom-8 -right-8 bg-white text-zinc-900 p-8 hidden md:block">
-                <span className="text-[10px] uppercase tracking-widest font-black">Est. 2020</span>
+              <div className="absolute -bottom-8 -right-8 bg-white text-zinc-900 p-8 hidden md:block z-10 shadow-2xl">
+                <span className="text-[10px] uppercase tracking-[0.3em] font-black">Est. 2015</span>
               </div>
             </div>
             <div className="flex flex-col justify-center">
@@ -185,20 +185,35 @@ const App: React.FC = () => {
         </section>
 
         {/* Praise Section */}
-        <section id="praise" className="py-32 md:py-56 px-6 max-w-7xl mx-auto border-b border-zinc-100">
-           <div className="flex flex-col md:flex-row gap-20">
-            <div className="md:w-1/3">
-              <h2 className="text-xs font-bold uppercase tracking-[0.5em] text-zinc-300 sticky top-32">Client Voice</h2>
+        <section id="praise" className="py-32 md:py-64 px-6 max-w-7xl mx-auto border-b border-zinc-100">
+           <div className="flex flex-col gap-24">
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-[0.5em] text-zinc-300 mb-2">Praise</h2>
+              <p className="text-sm text-zinc-400 uppercase tracking-widest font-bold">Client Voices & Feedback</p>
             </div>
-            <div className="md:w-2/3 space-y-32">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-32">
               {TESTIMONIALS.map((t) => (
-                <div key={t.id} className="max-w-2xl">
-                  <blockquote className="text-3xl md:text-5xl font-light leading-tight tracking-tight text-zinc-800 mb-10 italic">
+                <div key={t.id} className="max-w-xl group">
+                  <div className="mb-4">
+                    <h4 className="text-zinc-400 text-[10px] font-black uppercase tracking-[0.4em]">
+                      {t.title}
+                    </h4>
+                  </div>
+                  <blockquote className="text-2xl md:text-4xl font-light leading-tight tracking-tight text-zinc-800 mb-10 italic">
                     "{t.quote}"
                   </blockquote>
-                  <cite className="not-italic flex items-center gap-4">
-                    <div className="w-8 h-px bg-zinc-900" />
-                    <span className="text-sm font-bold uppercase tracking-widest">{t.author}, {t.company}</span>
+                  <cite className="not-italic flex items-center gap-6">
+                    <div className="w-12 h-px bg-zinc-200 group-hover:w-16 group-hover:bg-zinc-900 transition-all duration-500" />
+                    <div>
+                       <span className="text-xs font-bold uppercase tracking-widest text-zinc-900 block mb-1">
+                        {t.author}
+                      </span>
+                      {t.role && (
+                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 block group-hover:text-zinc-500 transition-colors">
+                          {t.role}
+                        </span>
+                      )}
+                    </div>
                   </cite>
                 </div>
               ))}

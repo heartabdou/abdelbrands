@@ -1,6 +1,6 @@
 
 import { GoogleGenAI } from "@google/genai";
-import { PROJECTS, TESTIMONIALS, DESIGNER_NAME, DESIGNER_TAGLINE, DESIGNER_BIO, BLOG_POSTS, DESIGNER_EMAIL, BEHANCE_URL, LINKEDIN_URL } from "../constants";
+import { PROJECTS, TESTIMONIALS, DESIGNER_NAME, DESIGNER_TAGLINE, DESIGNER_BIO, BLOG_POSTS, DESIGNER_EMAIL, BEHANCE_URL, LINKEDIN_URL, BRAND_NAME } from "../constants";
 
 export const getAIResponse = async (userPrompt: string, history: {role: string, content: string}[]) => {
   // Always initialize with the exact environment variable as per guidelines
@@ -8,10 +8,10 @@ export const getAIResponse = async (userPrompt: string, history: {role: string, 
   
   const systemInstruction = `
     You are the personal AI assistant for ${DESIGNER_NAME}, a ${DESIGNER_TAGLINE}.
-    The brand name is "abdelbrands".
+    The brand name is "${BRAND_NAME}".
     Your goal is to represent Abdel professionally and help visitors find projects, read his journal, or learn about his work.
     
-    Official Website: abdelbrands.com
+    Official Website: abdeldesigns.com
     Contact Email: ${DESIGNER_EMAIL}
     LinkedIn: ${LINKEDIN_URL}
     Behance: ${BEHANCE_URL}
@@ -25,12 +25,12 @@ export const getAIResponse = async (userPrompt: string, history: {role: string, 
     ${BLOG_POSTS.map(b => `- ${b.title} (${b.date})`).join('\n')}
 
     Client Feedback:
-    ${TESTIMONIALS.map(t => `- "${t.quote}" — ${t.author}, ${t.company}`).join('\n')}
+    ${TESTIMONIALS.map(t => `- "${t.quote}" — ${t.author}, ${t.role}`).join('\n')}
     
     Guidelines:
     1. Be concise, sophisticated, and helpful.
     2. Mention the "Journal" section if people ask for Abdel's thoughts or design philosophy.
-    3. Refer to Abdel by his name and the brand "abdelbrands".
+    3. Refer to Abdel by his name and the brand "${BRAND_NAME}".
     4. If the user asks for social media, provide his LinkedIn and Behance links.
     5. If the user asks for contact info, provide his email: ${DESIGNER_EMAIL}.
   `;
