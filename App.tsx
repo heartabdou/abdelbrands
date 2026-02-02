@@ -5,7 +5,7 @@ import ProjectCard from './components/ProjectCard';
 import AIAssistant from './components/AIAssistant';
 import Logo from './components/Logo';
 import { PROJECTS, TESTIMONIALS, DESIGNER_NAME, BRAND_NAME, DESIGNER_TAGLINE, DESIGNER_SUBHEADING, DESIGNER_BIO, BLOG_POSTS, DESIGNER_EMAIL, BEHANCE_URL, LINKEDIN_URL, DESIGNER_IMAGE, optimizeImage } from './constants';
-import { Project, BlogPost } from './types';
+import { Project, BlogPost, ProjectCategory } from './types';
 
 const App: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -14,9 +14,15 @@ const App: React.FC = () => {
   const [showAllPosts, setShowAllPosts] = useState(false);
 
   const categories = ['All', 'Packaging', 'UI/UX', 'Web Design', 'Branding'];
+  
   const filteredProjects = activeCategory === 'All' 
     ? PROJECTS 
-    : PROJECTS.filter(p => p.category === activeCategory);
+    : PROJECTS.filter(p => {
+        if (Array.isArray(p.category)) {
+          return p.category.includes(activeCategory as ProjectCategory);
+        }
+        return p.category === activeCategory;
+      });
 
   const displayedPosts = showAllPosts ? BLOG_POSTS : BLOG_POSTS.slice(0, 3);
   const hasMorePosts = BLOG_POSTS.length > 3;
@@ -56,18 +62,18 @@ const App: React.FC = () => {
         </section>
 
         <section id="projects" className="px-6 py-24 max-w-7xl mx-auto border-t border-zinc-100">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-10">
             <div>
-              <h2 className="text-4xl font-bold uppercase tracking-tighter mb-2">Portfolio</h2>
-              <p className="text-zinc-400 text-sm tracking-widest uppercase">Archive 2024</p>
+              <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-2">Portfolio</h2>
+              <p className="text-zinc-400 text-sm tracking-widest uppercase">Selected Works</p>
             </div>
             
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2 md:gap-3">
               {categories.map(cat => (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all ${
+                  className={`px-4 md:px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all ${
                     activeCategory === cat 
                       ? 'bg-zinc-900 text-white shadow-lg' 
                       : 'bg-zinc-50 text-zinc-400 hover:bg-zinc-200'
@@ -192,7 +198,9 @@ const App: React.FC = () => {
         <div className="fixed inset-0 z-[100] bg-white overflow-y-auto custom-scrollbar animate-in fade-in slide-in-from-bottom-5 duration-700">
            <nav className="fixed top-0 left-0 w-full h-20 px-6 flex items-center justify-between bg-white/95 backdrop-blur-md z-[110] border-b border-zinc-100">
             <div className="flex items-center gap-3">
-              <span className="text-[10px] font-black uppercase tracking-widest px-2 py-1 bg-zinc-900 text-white rounded-sm">{selectedProject.category}</span>
+              <span className="text-[10px] font-black uppercase tracking-widest px-2 py-1 bg-zinc-900 text-white rounded-sm">
+                {Array.isArray(selectedProject.category) ? selectedProject.category.join(' & ') : selectedProject.category}
+              </span>
               <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">/ {selectedProject.title}</span>
             </div>
             <button onClick={() => setSelectedProject(null)} className="text-xs font-bold uppercase tracking-[0.3em] hover:text-red-500 transition-all">[ Close ]</button>

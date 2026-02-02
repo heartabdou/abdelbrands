@@ -9,6 +9,8 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
+  const categories = Array.isArray(project.category) ? project.category : [project.category];
+
   return (
     <div 
       onClick={() => onClick(project)}
@@ -25,11 +27,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
       </div>
       
       <div className="p-6">
-        <div className="flex justify-between items-start mb-2">
+        <div className="flex justify-between items-start mb-4">
           <h3 className="text-lg font-semibold tracking-tight uppercase">{project.title}</h3>
-          <span className="text-[10px] tracking-widest uppercase font-bold text-zinc-400 border border-zinc-200 px-2 py-0.5 rounded">
-            {project.category}
-          </span>
+          <div className="flex flex-wrap gap-1 justify-end">
+            {categories.map((cat, idx) => (
+              <span key={idx} className="text-[10px] tracking-widest uppercase font-bold text-zinc-400 border border-zinc-200 px-2 py-0.5 rounded">
+                {cat}
+              </span>
+            ))}
+          </div>
         </div>
         <p className="text-zinc-500 text-sm leading-relaxed line-clamp-2">
           {project.description}

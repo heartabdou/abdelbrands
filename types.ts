@@ -4,7 +4,7 @@ export type ProjectCategory = 'Packaging' | 'UI/UX' | 'Web Design' | 'Branding';
 export interface Project {
   id: string;
   title: string;
-  category: ProjectCategory;
+  category: ProjectCategory | ProjectCategory[];
   description: string;
   imageUrl: string;
   galleryImages: string[];
