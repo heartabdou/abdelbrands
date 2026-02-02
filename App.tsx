@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import ProjectCard from './components/ProjectCard';
 import AIAssistant from './components/AIAssistant';
 import Logo from './components/Logo';
-import { PROJECTS, TESTIMONIALS, DESIGNER_NAME, BRAND_NAME, DESIGNER_TAGLINE, DESIGNER_SUBHEADING, DESIGNER_BIO, BLOG_POSTS, DESIGNER_EMAIL, BEHANCE_URL, LINKEDIN_URL, DESIGNER_IMAGE } from './constants';
+import { PROJECTS, TESTIMONIALS, DESIGNER_NAME, BRAND_NAME, DESIGNER_TAGLINE, DESIGNER_SUBHEADING, DESIGNER_BIO, BLOG_POSTS, DESIGNER_EMAIL, BEHANCE_URL, LINKEDIN_URL, DESIGNER_IMAGE, optimizeImage } from './constants';
 import { Project, BlogPost } from './types';
 
 const App: React.FC = () => {
@@ -18,11 +18,9 @@ const App: React.FC = () => {
     ? PROJECTS 
     : PROJECTS.filter(p => p.category === activeCategory);
 
-  // Determine which posts to show
   const displayedPosts = showAllPosts ? BLOG_POSTS : BLOG_POSTS.slice(0, 3);
   const hasMorePosts = BLOG_POSTS.length > 3;
 
-  // Lock scroll when a modal is open
   useEffect(() => {
     if (selectedProject || selectedBlogPost) {
       document.body.style.overflow = 'hidden';
@@ -45,7 +43,6 @@ const App: React.FC = () => {
       <Navbar onNavigate={navigateTo} />
       
       <main className="flex-grow pt-20">
-        {/* Hero Section */}
         <section className="px-6 py-24 md:py-48 max-w-7xl mx-auto">
           <div className="max-w-6xl">
             <span className="text-xs uppercase tracking-[0.4em] font-bold text-zinc-400 mb-8 block animate-pulse">Based in Brand Strategy</span>
@@ -58,7 +55,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Gallery Section */}
         <section id="projects" className="px-6 py-24 max-w-7xl mx-auto border-t border-zinc-100">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
             <div>
@@ -90,7 +86,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Journal Section */}
         <section id="journal" className="py-32 px-6 max-w-7xl mx-auto border-t border-zinc-100">
           <div className="flex flex-col md:flex-row gap-20">
             <div className="md:w-1/3">
@@ -137,27 +132,15 @@ const App: React.FC = () => {
                   </button>
                 </div>
               )}
-              
-              {showAllPosts && (
-                <div className="mt-20">
-                  <button 
-                    onClick={() => setShowAllPosts(false)}
-                    className="text-xs font-black uppercase tracking-[0.3em] text-zinc-400 hover:text-zinc-900 transition-colors"
-                  >
-                    Show Less
-                  </button>
-                </div>
-              )}
             </div>
           </div>
         </section>
 
-        {/* About Section */}
         <section id="about" className="bg-zinc-900 text-white py-32 md:py-56 px-6">
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-24 items-center">
             <div className="relative max-w-sm md:max-w-md mx-auto md:mx-0">
               <img 
-                src={DESIGNER_IMAGE} 
+                src={optimizeImage(DESIGNER_IMAGE, 1000)} 
                 alt={DESIGNER_NAME} 
                 className="w-full aspect-[3/4] object-cover grayscale brightness-75 hover:brightness-100 transition-all duration-1000 rounded-sm shadow-2xl"
               />
@@ -170,21 +153,10 @@ const App: React.FC = () => {
               <p className="text-zinc-400 text-xl leading-relaxed mb-10 font-light">
                 {DESIGNER_BIO}
               </p>
-              <div className="flex gap-10">
-                <div>
-                  <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 mb-4">Strategy</h4>
-                  <p className="text-xs text-zinc-400">User Experience, Branding, Conversions</p>
-                </div>
-                <div>
-                  <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 mb-4">Craft</h4>
-                  <p className="text-xs text-zinc-400">Packaging, Web/App Interfaces</p>
-                </div>
-              </div>
             </div>
           </div>
         </section>
 
-        {/* Praise Section */}
         <section id="praise" className="py-32 md:py-64 px-6 max-w-7xl mx-auto border-b border-zinc-100">
            <div className="flex flex-col gap-24">
             <div>
@@ -194,26 +166,14 @@ const App: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-32">
               {TESTIMONIALS.map((t) => (
                 <div key={t.id} className="max-w-xl group">
-                  <div className="mb-4">
-                    <h4 className="text-zinc-400 text-[10px] font-black uppercase tracking-[0.4em]">
-                      {t.title}
-                    </h4>
-                  </div>
                   <blockquote className="text-2xl md:text-4xl font-light leading-tight tracking-tight text-zinc-800 mb-10 italic">
                     "{t.quote}"
                   </blockquote>
                   <cite className="not-italic flex items-center gap-6">
                     <div className="w-12 h-px bg-zinc-200 group-hover:w-16 group-hover:bg-zinc-900 transition-all duration-500" />
-                    <div>
-                       <span className="text-xs font-bold uppercase tracking-widest text-zinc-900 block mb-1">
-                        {t.author}
-                      </span>
-                      {t.role && (
-                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 block group-hover:text-zinc-500 transition-colors">
-                          {t.role}
-                        </span>
-                      )}
-                    </div>
+                    <span className="text-xs font-bold uppercase tracking-widest text-zinc-900">
+                      {t.author} — {t.role}
+                    </span>
                   </cite>
                 </div>
               ))}
@@ -221,7 +181,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Contact Section */}
         <section id="contact" className="py-32 md:py-64 px-6 max-w-7xl mx-auto text-center">
           <span className="text-xs font-bold uppercase tracking-[0.5em] text-zinc-300 mb-12 block">New Project?</span>
           <h2 className="text-6xl md:text-[10rem] font-bold tracking-tighter mb-16 hover:text-zinc-200 transition-colors">Connect.</h2>
@@ -229,20 +188,6 @@ const App: React.FC = () => {
         </section>
       </main>
 
-      <footer className="px-6 py-12 border-t border-zinc-100 text-zinc-400 text-[10px] uppercase tracking-[0.2em] font-bold">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-3">
-            <Logo className="h-6 opacity-40 grayscale brightness-0" />
-            <p>© {new Date().getFullYear()} Studio</p>
-          </div>
-          <div className="flex gap-8">
-            <a href={BEHANCE_URL} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 transition-colors">Behance</a>
-            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 transition-colors">LinkedIn</a>
-          </div>
-        </div>
-      </footer>
-
-      {/* Project Detail Modal */}
       {selectedProject && (
         <div className="fixed inset-0 z-[100] bg-white overflow-y-auto custom-scrollbar animate-in fade-in slide-in-from-bottom-5 duration-700">
            <nav className="fixed top-0 left-0 w-full h-20 px-6 flex items-center justify-between bg-white/95 backdrop-blur-md z-[110] border-b border-zinc-100">
@@ -250,20 +195,20 @@ const App: React.FC = () => {
               <span className="text-[10px] font-black uppercase tracking-widest px-2 py-1 bg-zinc-900 text-white rounded-sm">{selectedProject.category}</span>
               <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">/ {selectedProject.title}</span>
             </div>
-            <button onClick={() => setSelectedProject(null)} className="text-xs font-bold uppercase tracking-[0.3em] hover:text-red-500 transition-all hover:scale-110">[ Close ]</button>
+            <button onClick={() => setSelectedProject(null)} className="text-xs font-bold uppercase tracking-[0.3em] hover:text-red-500 transition-all">[ Close ]</button>
           </nav>
           
           <div className="pt-20">
             <header className="relative h-[80vh] w-full overflow-hidden bg-zinc-100">
               <img 
-                src={selectedProject.imageUrl} 
+                src={optimizeImage(selectedProject.imageUrl, 2000)} 
                 className="w-full h-full object-cover transition-transform duration-[3s] hover:scale-105" 
                 alt={selectedProject.title}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent backdrop-blur-[1px]" />
               <div className="absolute bottom-20 left-0 w-full px-6">
                 <div className="max-w-7xl mx-auto">
-                  <h2 className="text-7xl md:text-[11vw] font-bold tracking-tighter text-white leading-[0.8] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+                  <h2 className="text-7xl md:text-[11vw] font-bold tracking-tighter text-white leading-[0.8]">
                     {selectedProject.title}
                   </h2>
                 </div>
@@ -280,71 +225,32 @@ const App: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-300 mb-2">Role</h4>
-                      <p className="text-xl font-medium">{selectedProject.role || 'UI/UX & Creative Direction'}</p>
+                      <p className="text-xl font-medium">{selectedProject.role}</p>
                     </div>
                     <div>
                       <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-300 mb-2">Year</h4>
                       <p className="text-xl font-medium">{selectedProject.year}</p>
                     </div>
                   </div>
-
-                  {selectedProject.goals && (
-                    <div className="pt-12 border-t border-zinc-100">
-                      <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-300 mb-6">Strategic Goals</h4>
-                      <ul className="space-y-4">
-                        {selectedProject.goals.map((goal, i) => (
-                          <li key={i} className="flex gap-4 items-start group">
-                            <span className="text-[10px] font-black text-zinc-400 mt-1">0{i+1}</span>
-                            <span className="text-sm text-zinc-600 group-hover:text-zinc-900 transition-colors">{goal}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
                 </aside>
 
                 <article className="space-y-24">
                   <div className="space-y-12">
-                    <div className="max-w-2xl">
-                      <h3 className="text-xs font-bold uppercase tracking-[0.4em] text-zinc-300 mb-6">The Brief</h3>
-                      <p className="text-3xl md:text-5xl font-light tracking-tight leading-tight text-zinc-800">
-                        {selectedProject.description}
-                      </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-12 pt-12">
-                      <div>
-                        <h4 className="text-xs font-bold uppercase tracking-[0.4em] text-zinc-300 mb-6">The Challenge</h4>
-                        <p className="text-lg leading-relaxed text-zinc-500">
-                          {selectedProject.challenge}
-                        </p>
-                      </div>
-                      <div>
-                        <h4 className="text-xs font-bold uppercase tracking-[0.4em] text-zinc-300 mb-6">The Solution</h4>
-                        <p className="text-lg leading-relaxed text-zinc-500">
-                          {selectedProject.solution}
-                        </p>
-                      </div>
-                    </div>
+                    <p className="text-3xl md:text-5xl font-light tracking-tight leading-tight text-zinc-800">
+                      {selectedProject.description}
+                    </p>
                   </div>
 
                   <div className="grid grid-cols-1 gap-12">
                     {selectedProject.galleryImages.map((img, i) => (
                       <div key={i} className="group relative overflow-hidden bg-zinc-100 rounded-sm">
                         <img 
-                          src={img} 
+                          src={optimizeImage(img, 1600)} 
                           className="w-full aspect-[16/9] object-cover grayscale hover:grayscale-0 transition-all duration-1000" 
                           alt={`${selectedProject.title} Detail ${i + 1}`}
                         />
                       </div>
                     ))}
-                  </div>
-
-                  <div className="py-24 border-y border-zinc-100 text-center">
-                    <h4 className="text-xs font-bold uppercase tracking-[0.4em] text-zinc-300 mb-12">Behind the Craft</h4>
-                    <p className="max-w-3xl mx-auto text-2xl font-light text-zinc-600 leading-relaxed">
-                      "{selectedProject.fullStory}"
-                    </p>
                   </div>
                 </article>
               </div>
@@ -353,7 +259,6 @@ const App: React.FC = () => {
         </div>
       )}
 
-      {/* Blog Detail Modal */}
       {selectedBlogPost && (
         <div className="fixed inset-0 z-[100] bg-white overflow-y-auto custom-scrollbar animate-in fade-in duration-500">
           <nav className="fixed top-0 left-0 w-full h-20 px-6 flex items-center justify-between bg-white/95 backdrop-blur-md z-[110] border-b border-zinc-100">

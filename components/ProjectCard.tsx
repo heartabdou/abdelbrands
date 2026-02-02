@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Project } from '../types';
+import { optimizeImage } from '../constants';
 
 interface ProjectCardProps {
   project: Project;
@@ -15,9 +16,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
     >
       <div className="relative aspect-[4/5] overflow-hidden">
         <img 
-          src={project.imageUrl} 
+          src={optimizeImage(project.imageUrl, 800)} 
           alt={project.title}
           className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500" />
       </div>

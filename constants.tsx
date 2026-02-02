@@ -1,6 +1,24 @@
 
 import { Project, Testimonial, BlogPost } from './types';
 
+/**
+ * HELPER: Cloudinary Optimizer
+ * This function automatically adds optimization parameters to your Cloudinary links.
+ * It ensures images are the right format (WebP/AVIF) and quality for fast loading.
+ */
+export const optimizeImage = (url: string, width?: number) => {
+  if (!url.includes('cloudinary.com')) return url;
+  
+  // Inserts 'f_auto,q_auto' and optional width into the Cloudinary URL path
+  const optimizationParams = width ? `f_auto,q_auto,w_${width}` : 'f_auto,q_auto';
+  return url.replace('/upload/', `/upload/${optimizationParams}/`);
+};
+
+/**
+ * ==========================================
+ * 1. PERSONAL IDENTITY & BRANDING
+ * ==========================================
+ */
 export const DESIGNER_NAME = "Abdel";
 export const BRAND_NAME = "abdeldesigns";
 export const DESIGNER_TAGLINE = "Designing Digital Products & Packaging That Sell";
@@ -8,22 +26,30 @@ export const DESIGNER_SUBHEADING = "UI/UX, web & app design, and packaging syste
 export const DESIGNER_BIO = "A UI/UX, web, and packaging designer with a background in graphic design. I help startups, eCommerce brands, and digital products create clean, functional designs that convert users into customers. My work focuses on user experience, branding, packaging design, and modern web/app interfaces, blending strategy with visual clarity.";
 
 /**
- * ACTION REQUIRED: 
- * To use your actual photo, save your image in the project root as 'me.jpg' 
- * and change this URL to './me.jpg'
+ * YOUR PROFILE IMAGE
+ * Replace this with your Cloudinary URL.
  */
-export const DESIGNER_IMAGE = "https://github.com/heartabdou/abdelbrands/blob/main/images/2026-01-05%2006.07.jpg?raw=true&auto=format&fit=crop"; 
+export const DESIGNER_IMAGE = "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=2000&auto=format&fit=crop"; 
 
+/**
+ * CONTACT & SOCIAL
+ */
 export const DESIGNER_EMAIL = "hello@abdeldesigns.com";
 export const BEHANCE_URL = "https://www.behance.net/abdelkdesign";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/lkabche-abdallah/";
 
+/**
+ * ==========================================
+ * 2. PORTFOLIO PROJECTS
+ * ==========================================
+ */
 export const PROJECTS: Project[] = [
   {
     id: 'bionic',
     title: 'Bionic',
     category: 'Packaging',
     description: 'Design premium, durable packaging and marketing materials for innovative dog toys.',
+    // PASTE YOUR CLOUDINARY LINK HERE
     imageUrl: 'https://images.unsplash.com/photo-1534361960057-19889db9621e?q=80&w=2000&auto=format&fit=crop',
     galleryImages: [
       'https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1000&auto=format&fit=crop',
@@ -84,75 +110,14 @@ export const PROJECTS: Project[] = [
     challenge: 'Presenting complex insurance data without overwhelming the user.',
     solution: 'Created a clean UI/UX system with intuitive flows, clear CTAs, and accessible layouts.',
     fullStory: 'UX decisions were driven by user trust and readability, reducing friction across the journey.'
-  },
-  {
-    id: 'nagle',
-    title: 'Nagle',
-    category: 'Web Design',
-    description: 'High-conversion personal injury landing page for legal services.',
-    imageUrl: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2000&auto=format&fit=crop',
-    galleryImages: [
-      'https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=1000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1453948588355-65846ca66530?q=80&w=1000&auto=format&fit=crop'
-    ],
-    year: '2021',
-    client: 'Nagle Firm',
-    role: 'Landing Page Designer',
-    goals: [
-      'Increase lead inquiries',
-      'Build trust instantly',
-      'Mobile-first optimization'
-    ],
-    challenge: 'Standing out in a competitive legal market while maintaining professionalism.',
-    solution: 'Designed a conversion-focused landing page using strong hierarchy, testimonials, and trust signals.',
-    fullStory: 'Every section was crafted to guide users toward action while reinforcing credibility.'
-  },
-  {
-    id: 'protection',
-    title: 'Protection',
-    category: 'Packaging',
-    description: 'Product label design emphasizing clarity, compliance, and shelf presence.',
-    imageUrl: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=2000&auto=format&fit=crop',
-    galleryImages: [
-      'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1000&auto=format&fit=crop'
-    ],
-    year: '2023',
-    client: 'Protection Plus',
-    role: 'Label Designer',
-    goals: [
-      'Clear information hierarchy',
-      'Strong brand visibility',
-      'Regulatory-friendly layout'
-    ],
-    challenge: 'Balancing regulatory requirements with visual appeal.',
-    solution: 'Delivered a clean, structured label design that communicates trust and effectiveness.',
-    fullStory: 'Precision and clarity guided every design decision to ensure instant readability.'
-  },
-  {
-    id: 'solomons',
-    title: 'Solomons',
-    category: 'Web Design',
-    description: 'Ecommerce website design for a flooring franchising business.',
-    imageUrl: 'https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?q=80&w=2000&auto=format&fit=crop',
-    galleryImages: [
-      'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?q=80&w=1000&auto=format&fit=crop'
-    ],
-    year: '2023',
-    client: 'Solomons Flooring',
-    role: 'UI/UX Designer',
-    goals: [
-      'Improve online product discovery',
-      'Support franchise inquiries',
-      'Optimize conversion paths'
-    ],
-    challenge: 'Designing for both customers and franchise partners in one platform.',
-    solution: 'Built a scalable ecommerce UX with structured navigation, product clarity, and conversion-focused layouts.',
-    fullStory: 'The project required balancing ecommerce usability with brand authority for a large franchising network.'
   }
 ];
 
+/**
+ * ==========================================
+ * 3. JOURNAL / BLOG POSTS
+ * ==========================================
+ */
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: 'b1',
@@ -169,25 +134,14 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '6 min read',
     excerpt: 'Design is about removing the unnecessary until only the essential remains.',
     content: 'True minimalism isn\'t about having nothing; it\'s about having exactly what is needed and nothing more. It is a tool for focus, allowing the user to navigate a brand\'s message without the static of decorative clutter.'
-  },
-  {
-    id: 'b3',
-    title: 'Packaging Strategy for E-Commerce',
-    date: 'Jan 15, 2024',
-    readTime: '5 min read',
-    excerpt: 'How to design for the \"Secondary Shelf\" – the customer\'s doorstep.',
-    content: 'The retail shelf is no longer the primary battlefield for many brands. The customer\'s kitchen table or office desk is where the brand relationship is solidified. We must design for transit durability as much as visual impact.'
-  },
-  {
-    id: 'b4',
-    title: 'Visual Clarity in Complex Dashboards',
-    date: 'Dec 02, 2023',
-    readTime: '8 min read',
-    excerpt: 'Simplifying data-heavy interfaces without losing functional depth.',
-    content: 'Complexity is a requirement in many SaaS tools, but complication is a choice. By using proper spacing, color-coded urgency, and progressive disclosure, we can present deep data without overwhelming the operator.'
   }
 ];
 
+/**
+ * ==========================================
+ * 4. TESTIMONIALS
+ * ==========================================
+ */
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't1',
@@ -203,38 +157,6 @@ export const TESTIMONIALS: Testimonial[] = [
     quote: "Abdel understood the project scope, filled missing gaps, and delivered with a strong artistic eye and great responsiveness.",
     author: "Strategic Partner",
     role: "Agency Relations",
-    company: ""
-  },
-  {
-    id: 't3',
-    title: "Creative & Professional",
-    quote: "Abdel brought our ideas to life thoughtfully, handled changes professionally, and communicated clearly throughout the project.",
-    author: "Creative Lead",
-    role: "Brand Strategy",
-    company: ""
-  },
-  {
-    id: 't4',
-    title: "Excellent Communication",
-    quote: "Great working with Abdel. Communication and design quality were excellent from start to finish.",
-    author: "Project Manager",
-    role: "Software Development",
-    company: ""
-  },
-  {
-    id: 't5',
-    title: "Fast & Creative",
-    quote: "Very creative with quick responses. It was a pleasure working with Abdel and we hope to collaborate again.",
-    author: "Marketing Director",
-    role: "Retail Brands",
-    company: ""
-  },
-  {
-    id: 't6',
-    title: "Attention to Detail",
-    quote: "Exceptional responsiveness and attention to detail. We’ll definitely work with Abdel again for future projects.",
-    author: "Founder",
-    role: "D2C Startup",
     company: ""
   }
 ];
