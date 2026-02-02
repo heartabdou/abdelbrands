@@ -29,7 +29,7 @@ export const DESIGNER_BIO = "A UI/UX, web, and packaging designer with a backgro
  * YOUR PROFILE IMAGE
  * Replace this with your Cloudinary URL.
  */
-export const DESIGNER_IMAGE = "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=2000&auto=format&fit=crop"; 
+export const DESIGNER_IMAGE = "https://collection.cloudinary.com/dshgtdxb0/801ea4d9e909907fb188d3b036c78476&auto=format&fit=crop"; 
 
 /**
  * CONTACT & SOCIAL
