@@ -275,13 +275,11 @@ const App: React.FC = () => {
           </nav>
           <div className="max-w-4xl mx-auto px-6 pt-40 pb-32">
             <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-16 leading-[1.1]">{selectedBlogPost.title}</h2>
-            <div className="prose prose-zinc lg:prose-xl max-w-none">
-              <p className="text-2xl font-light text-zinc-600 leading-relaxed mb-12">
-                {selectedBlogPost.excerpt}
-              </p>
-              <div className="text-lg text-zinc-800 leading-loose space-y-8 whitespace-pre-line">
-                {selectedBlogPost.content}
-              </div>
+            <div className="prose prose-zinc lg:prose-xl max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-zinc-900 prose-p:text-zinc-700 prose-strong:text-zinc-900 prose-ul:list-disc">
+              <div 
+                className="text-lg leading-loose space-y-4"
+                dangerouslySetInnerHTML={{ __html: selectedBlogPost.content }}
+              />
             </div>
           </div>
         </div>
