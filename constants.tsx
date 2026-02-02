@@ -67,6 +67,28 @@ export const PROJECTS: Project[] = [
     solution: 'Developed bold packaging visuals supported by brochures and product imagery, balancing durability cues with modern branding.',
     fullStory: 'Working closely with product developer Keith Mullin, the focus was on clarity, durability perception, and strong visual impact across all customer touchpoints.'
   },
+   {
+    id: 'Iherb',
+    title: 'Iherb',
+    category: 'Email Template',
+    description: 'Full packaging design for an ultra booster pad product focused on comfort and usability.',
+    imageUrl: 'https://images.unsplash.com/photo-1610424564502-0e5445479606?q=80&w=2000&auto=format&fit=crop',
+    galleryImages: [
+      'https://images.unsplash.com/photo-1584305650174-8898960f2d47?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1599305090598-fe179d501c27?q=80&w=1000&auto=format&fit=crop'
+    ],
+    year: '2023',
+    client: 'Dimples',
+    role: 'Packaging Designer',
+    goals: [
+      'Clear product communication',
+      'Strong shelf visibility',
+      'User-friendly information hierarchy'
+    ],
+    challenge: 'Explaining product benefits clearly while keeping the packaging visually clean and approachable.',
+    solution: 'Designed the complete packaging system with clear typography, soft visuals, and structured information flow.',
+    fullStory: 'The project required balancing softness and performance visually, ensuring instant understanding at first glance.'
+  },
   {
     id: 'dimples',
     title: 'Dimples',
