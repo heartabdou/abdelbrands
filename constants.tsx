@@ -12,7 +12,7 @@ export const DESIGNER_BIO = "A UI/UX, web, and packaging designer with a backgro
  * To use your actual photo, save your image in the project root as 'me.jpg' 
  * and change this URL to './me.jpg'
  */
-export const DESIGNER_IMAGE = "https://raw.githubusercontent.com/heartabdou/abdelbrands/refs/heads/main/images/2026-01-05%2006.07.jpg&auto=format&fit=crop"; 
+export const DESIGNER_IMAGE = "https://github.com/heartabdou/abdelbrands/blob/main/images/2026-01-05%2006.07.jpg?raw=true&auto=format&fit=crop"; 
 
 export const DESIGNER_EMAIL = "hello@abdeldesigns.com";
 export const BEHANCE_URL = "https://www.behance.net/abdelkdesign";
