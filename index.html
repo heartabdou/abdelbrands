@@ -4,15 +4,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Abdel Designs | Designer Portfolio</title>
     
+    <!-- Primary Meta Tags -->
+    <title>Abdel Designs | Packaging, UI/UX & Web Designer Portfolio</title>
+    <meta name="title" content="Abdel Designs | Packaging, UI/UX & Web Designer Portfolio">
+    <meta name="description" content="Portfolio of Abdel, a strategic designer specializing in packaging, UI/UX, and high-conversion web design. Explore selected works in digital and physical product identity.">
+    <meta name="keywords" content="Packaging Design, UI/UX Designer, Web Design, Branding, Product Design, Abdel Designs, Portfolio">
+    <meta name="author" content="Abdel">
+    <link rel="canonical" href="https://abdeldesigns.com/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abdeldesigns.com/">
+    <meta property="og:title" content="Abdel Designs | Packaging, UI/UX & Web Designer">
+    <meta property="og:description" content="Designing digital products and packaging that sell. View my latest projects in UI/UX and Web Design.">
+    <meta property="og:image" content="https://res.cloudinary.com/dshgtdxb0/image/upload/v1770045455/2026-01-05_06.07_p2n8ac.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://abdeldesigns.com/">
+    <meta property="twitter:title" content="Abdel Designs | Packaging, UI/UX & Web Designer">
+    <meta property="twitter:description" content="Designing digital products and packaging that sell. View my latest projects in UI/UX and Web Design.">
+    <meta property="twitter:image" content="https://res.cloudinary.com/dshgtdxb0/image/upload/v1770045455/2026-01-05_06.07_p2n8ac.jpg">
+
     <!-- Google Analytics (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-N53ZPX1TMW"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-N53ZPX1TMW');
     </script>
 
@@ -26,103 +46,53 @@
         scroll-behavior: smooth;
         background-color: #ffffff;
       }
-
-      /* Custom minimalist scrollbar */
-      .custom-scrollbar::-webkit-scrollbar {
-        width: 4px;
-      }
-      .custom-scrollbar::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #e5e7eb;
-        border-radius: 10px;
-      }
-
-      /* HIGH-END MASK REVEAL */
-      .reveal-container {
-        overflow: hidden;
-        position: relative;
-      }
-      
+      .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+      .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+      .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+      .reveal-container { overflow: hidden; position: relative; }
       .reveal-text {
         display: block;
         transform: translateY(110%);
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
         transition: transform 1.4s cubic-bezier(0.23, 1, 0.32, 1), clip-path 1.4s cubic-bezier(0.23, 1, 0.32, 1);
       }
-      
-      .in-view .reveal-text {
-        transform: translateY(0);
-      }
-
-      /* SOFT FADE UP */
+      .in-view .reveal-text { transform: translateY(0); }
       .fade-up {
         opacity: 0;
         transform: translateY(40px);
         transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1), transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
       }
-
-      .in-view .fade-up {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* STAGGERED DELAYS (Premium increments) */
+      .in-view .fade-up { opacity: 1; transform: translateY(0); }
       .stagger-1 { transition-delay: 0.15s; }
       .stagger-2 { transition-delay: 0.3s; }
       .stagger-3 { transition-delay: 0.45s; }
       .stagger-4 { transition-delay: 0.6s; }
-
-      /* NAV LINK ANIMATION */
-      .nav-link {
-        position: relative;
-      }
+      .nav-link { position: relative; }
       .nav-link::after {
-        content: '';
-        position: absolute;
-        bottom: -4px;
-        left: 0;
-        width: 0;
-        height: 1px;
-        background: currentColor;
-        transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+        background: currentColor; transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1);
       }
-      .nav-link:hover::after {
-        width: 100%;
-      }
-      
-      /* IMAGE HOVER - LENS EFFECT */
-      .img-container {
-        overflow: hidden;
-      }
-      .img-zoom {
-        transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1);
-      }
-      .project-card:hover .img-zoom {
-        transform: scale(1.08) translateY(-2%);
-      }
-
-      /* SMOOTH SCALE FOR MODALS */
+      .nav-link:hover::after { width: 100%; }
+      .img-container { overflow: hidden; }
+      .img-zoom { transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1); }
+      .project-card:hover .img-zoom { transform: scale(1.08) translateY(-2%); }
       @keyframes modalEnter {
         from { opacity: 0; transform: scale(0.98); }
         to { opacity: 1; transform: scale(1); }
       }
-      .modal-animate {
-        animation: modalEnter 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-      }
+      .modal-animate { animation: modalEnter 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "@google/genai": "https://esm.sh/@google/genai@^1.39.0",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
+    <script type="importmap">
+    {
+      "imports": {
+        "@google/genai": "https://esm.sh/@google/genai@^1.39.0",
+        "react/": "https://esm.sh/react@^19.2.4/",
+        "react": "https://esm.sh/react@^19.2.4",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+      }
+    }
+    </script>
+  <link rel="stylesheet" href="/index.css">
 </head>
   <body class="bg-white text-zinc-900 selection:bg-zinc-900 selection:text-white">
     <div id="root"></div>
