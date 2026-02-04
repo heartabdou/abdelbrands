@@ -7,7 +7,7 @@ import { Project, Testimonial, BlogPost } from './types';
  * It ensures images are the right format (WebP/AVIF) and quality for fast loading.
  */
 export const optimizeImage = (url: string, width?: number) => {
-  if (!url.includes('cloudinary.com')) return url;
+  if (!url || typeof url !== 'string' || !url.includes('cloudinary.com')) return url;
   
   // Inserts 'f_auto,q_auto' and optional width into the Cloudinary URL path
   const optimizationParams = width ? `f_auto,q_auto,w_${width}` : 'f_auto,q_auto';
