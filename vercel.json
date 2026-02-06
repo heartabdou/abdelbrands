@@ -11,7 +11,7 @@
       "destination": "/robots.txt"
     },
     {
-      "source": "/((?!sitemap\\.xml|robots\\.txt).*)$",
+      "source": "/((?!sitemap\\.xml|robots\\.txt|favicon\\.ico|favicon\\.png|apple-touch-icon\\.png).*)$",
       "destination": "/index.html"
     }
   ],
