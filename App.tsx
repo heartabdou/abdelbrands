@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProjectCard from './components/ProjectCard';
@@ -7,13 +7,21 @@ import AIAssistant from './components/AIAssistant';
 import { PROJECTS, TESTIMONIALS, DESIGNER_NAME, DESIGNER_TAGLINE, DESIGNER_SUBHEADING, DESIGNER_BIO, BLOG_POSTS, DESIGNER_EMAIL, DESIGNER_IMAGE, optimizeImage } from './constants';
 import { Project, BlogPost, ProjectCategory } from './types';
 
+const INITIAL_PROJECT_COUNT = 6;
+
 const App: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedBlogPost, setSelectedBlogPost] = useState<BlogPost | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [showAllPosts, setShowAllPosts] = useState(false);
+  const [visibleProjectsCount, setVisibleProjectsCount] = useState(INITIAL_PROJECT_COUNT);
   
   const scrollObserver = useRef<IntersectionObserver | null>(null);
+
+  // Reset visibility when category changes
+  useEffect(() => {
+    setVisibleProjectsCount(INITIAL_PROJECT_COUNT);
+  }, [activeCategory]);
 
   useEffect(() => {
     scrollObserver.current = new IntersectionObserver((entries) => {
@@ -41,18 +49,14 @@ const App: React.FC = () => {
       scrollObserver.current?.disconnect();
       mutationObserver.disconnect();
     };
-  }, [activeCategory, showAllPosts]);
+  }, [activeCategory, showAllPosts, visibleProjectsCount]);
 
-  // Force re-trigger animations when a modal opens
   useEffect(() => {
     if (selectedProject || selectedBlogPost) {
       document.body.style.overflow = 'hidden';
-      // Use a slightly longer timeout and specific selectors to ensure visibility
       setTimeout(() => {
         const modalElements = document.querySelectorAll('.modal-content-wrapper .animate-on-scroll');
         modalElements.forEach(el => el.classList.add('in-view'));
-        
-        // Also ensure the wrapper itself is marked as in-view for top-level transitions
         const wrappers = document.querySelectorAll('.modal-content-wrapper');
         wrappers.forEach(el => el.classList.add('in-view'));
       }, 100);
@@ -63,14 +67,26 @@ const App: React.FC = () => {
 
   const categories = ['All', 'Packaging', 'UI/UX', 'Web Design', 'Branding'];
   
-  const filteredProjects = activeCategory === 'All' 
-    ? PROJECTS 
-    : PROJECTS.filter(p => {
-        if (Array.isArray(p.category)) {
-          return p.category.includes(activeCategory as ProjectCategory);
-        }
-        return p.category === activeCategory;
-      });
+  const filteredProjects = useMemo(() => {
+    return activeCategory === 'All' 
+      ? PROJECTS 
+      : PROJECTS.filter(p => {
+          if (Array.isArray(p.category)) {
+            return p.category.includes(activeCategory as ProjectCategory);
+          }
+          return p.category === activeCategory;
+        });
+  }, [activeCategory]);
+
+  const displayedProjects = useMemo(() => {
+    return filteredProjects.slice(0, visibleProjectsCount);
+  }, [filteredProjects, visibleProjectsCount]);
+
+  const hasMoreProjects = filteredProjects.length > visibleProjectsCount;
+
+  const handleLoadMore = () => {
+    setVisibleProjectsCount(prev => prev + 4);
+  };
 
   const displayedPosts = showAllPosts ? BLOG_POSTS : BLOG_POSTS.slice(0, 3);
   const hasMorePosts = BLOG_POSTS.length > 3;
@@ -129,12 +145,24 @@ const App: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32">
-            {filteredProjects.map((project, index) => (
+            {displayedProjects.map((project, index) => (
               <div key={project.id} className={`animate-on-scroll fade-up stagger-${(index % 2) + 1}`}>
                 <ProjectCard project={project} onClick={setSelectedProject} />
               </div>
             ))}
           </div>
+
+          {hasMoreProjects && (
+            <div className="mt-32 flex justify-center animate-on-scroll fade-up">
+              <button 
+                onClick={handleLoadMore}
+                className="group flex flex-col items-center gap-4 text-[10px] font-black uppercase tracking-[0.5em] text-zinc-900 hover:text-zinc-400 transition-colors"
+              >
+                View More Work
+                <div className="w-px h-12 bg-zinc-900 group-hover:h-20 transition-all duration-700"></div>
+              </button>
+            </div>
+          )}
         </section>
 
         <section id="journal" className="py-32 md:py-56 px-6 max-w-7xl mx-auto border-t border-zinc-100 animate-on-scroll">
@@ -162,25 +190,9 @@ const App: React.FC = () => {
                     <p className="text-zinc-500 text-xl leading-relaxed max-w-xl font-light">
                       {post.excerpt}
                     </p>
-                    <div className="mt-10 flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] text-zinc-900">
-                      Read Entry 
-                      <div className="w-0 h-px bg-zinc-900 group-hover:w-12 transition-all duration-700"></div>
-                    </div>
                   </article>
                 ))}
               </div>
-
-              {hasMorePosts && !showAllPosts && (
-                <div className="mt-20 animate-on-scroll fade-up">
-                  <button 
-                    onClick={() => setShowAllPosts(true)}
-                    className="group flex items-center gap-6 text-[10px] font-black uppercase tracking-[0.4em] text-zinc-900"
-                  >
-                    View All Entries
-                    <span className="group-hover:translate-x-4 transition-transform duration-700">→</span>
-                  </button>
-                </div>
-              )}
             </div>
           </div>
         </section>
@@ -283,7 +295,6 @@ const App: React.FC = () => {
 
             <div className="max-w-7xl mx-auto px-6 py-40">
               <div className="grid lg:grid-cols-[1fr_2fr] gap-32">
-                {/* Sidebar Info */}
                 <aside className="space-y-16">
                   <div className="grid grid-cols-2 lg:grid-cols-1 gap-12">
                     <div className="animate-on-scroll fade-up stagger-1">
@@ -300,7 +311,6 @@ const App: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Goals Section */}
                   {selectedProject.goals && selectedProject.goals.length > 0 && (
                     <div className="pt-16 border-t border-zinc-100 animate-on-scroll fade-up stagger-4">
                       <h4 className="text-[9px] font-black uppercase tracking-[0.4em] text-zinc-300 mb-8">Objectives</h4>
@@ -316,7 +326,6 @@ const App: React.FC = () => {
                   )}
                 </aside>
 
-                {/* Main Content */}
                 <article className="space-y-40">
                   <div className="animate-on-scroll fade-up">
                     <p className="text-3xl md:text-5xl font-light tracking-tighter leading-[1.1] text-zinc-800 mb-12">
@@ -324,7 +333,6 @@ const App: React.FC = () => {
                     </p>
                   </div>
 
-                  {/* Challenge & Solution */}
                   {(selectedProject.challenge || selectedProject.solution) && (
                     <div className="grid md:grid-cols-2 gap-16 md:gap-32">
                       {selectedProject.challenge && (
@@ -346,7 +354,6 @@ const App: React.FC = () => {
                     </div>
                   )}
 
-                  {/* Full Story Section */}
                   {selectedProject.fullStory && (
                     <div className="pt-24 border-t border-zinc-100 animate-on-scroll fade-up">
                       <h4 className="text-[9px] font-black uppercase tracking-[0.4em] text-zinc-300 mb-12">Narrative</h4>
@@ -356,7 +363,6 @@ const App: React.FC = () => {
                     </div>
                   )}
 
-                  {/* Gallery */}
                   <div className="space-y-24">
                     {selectedProject.galleryImages.map((img, i) => (
                       <div key={i} className="group relative overflow-hidden bg-zinc-50 animate-on-scroll fade-up">
@@ -375,7 +381,6 @@ const App: React.FC = () => {
         </div>
       )}
 
-      {/* BLOG MODAL */}
       {selectedBlogPost && (
         <div className="fixed inset-0 z-[100] bg-white overflow-y-auto custom-scrollbar modal-animate modal-content-wrapper">
           <nav className="fixed top-0 left-0 w-full h-20 px-6 flex items-center justify-between bg-white/95 backdrop-blur-md z-[110] border-b border-zinc-50">

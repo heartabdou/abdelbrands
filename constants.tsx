@@ -3,68 +3,32 @@ import { Project, Testimonial, BlogPost } from './types';
 
 /**
  * HELPER: Cloudinary Optimizer
- * This function automatically adds optimization parameters to your Cloudinary links.
- * It ensures images are the right format (WebP/AVIF) and quality for fast loading.
  */
 export const optimizeImage = (url: string, width?: number) => {
   if (!url || typeof url !== 'string' || !url.includes('cloudinary.com')) return url;
-  
-  // Inserts 'f_auto,q_auto' and optional width into the Cloudinary URL path
   const optimizationParams = width ? `f_auto,q_auto,w_${width}` : 'f_auto,q_auto';
   return url.replace('/upload/', `/upload/${optimizationParams}/`);
 };
 
-/**
- * ==========================================
- * 1. PERSONAL IDENTITY & BRANDING
- * ==========================================
- */
 export const DESIGNER_NAME = "Abdel";
 export const BRAND_NAME = "abdeldesigns";
 export const DESIGNER_TAGLINE = "Designing Digital Products & Packaging That Sell";
 export const DESIGNER_SUBHEADING = "UI/UX, web & app design, and packaging systems built to attract users and convert customers.";
 export const DESIGNER_BIO = "A UI/UX, web, and packaging designer with a background in graphic design. I help startups, eCommerce brands, and digital products create clean, functional designs that convert users into customers. My work focuses on user experience, branding, packaging design, and modern web/app interfaces, blending strategy with visual clarity.";
 
-/**
- * YOUR PROFILE IMAGE
- */
 export const DESIGNER_IMAGE = "https://res.cloudinary.com/dshgtdxb0/image/upload/v1770045455/2026-01-05_06.07_p2n8ac.jpg"; 
 
-/**
- * CONTACT & SOCIAL
- */
 export const DESIGNER_EMAIL = "hello@abdeldesigns.com";
 export const BEHANCE_URL = "https://www.behance.net/abdelkdesign";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/lkabche-abdallah/";
 
 /**
  * ==========================================
- * 2. PORTFOLIO PROJECTS
+ * PORTFOLIO PROJECTS
+ * Sorted by user request: Bionic, Microsoft, Starport, Racing first.
  * ==========================================
  */
 export const PROJECTS: Project[] = [
-  {
-    id: 'solomons',
-    title: 'Solomons',
-    category: 'Web Design',
-    description: 'Ecommerce website design for a flooring franchising business.',
-    imageUrl: 'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770045614/Flooring_Franchising_Ecommerce_Website_Design_1_ig8spu.jpg',
-    galleryImages: [
-      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770045615/Flooring_Franchising_Ecommerce_Website_Design-1_1_gsmdzg.jpg',
-      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770045615/Flooring_Franchising_Ecommerce_Website_Design-2_1_xysmyb.jpg'
-    ],
-    year: '2023',
-    client: 'Solomons Flooring',
-    role: 'UI/UX Designer',
-    goals: [
-      'Improve online product discovery',
-      'Support franchise inquiries',
-      'Optimize conversion paths'
-    ],
-    challenge: 'Designing for both customers and franchise partners in one platform.',
-    solution: 'Built a scalable ecommerce UX with structured navigation, product clarity, and conversion-focused layouts.',
-    fullStory: 'The project required balancing ecommerce usability with brand authority for a large franchising network.'
-  },
   {
     id: 'bionic',
     title: 'Bionic',
@@ -88,6 +52,256 @@ export const PROJECTS: Project[] = [
     fullStory: 'Working closely with product developer Keith Mullin, the focus was on clarity, durability perception, and strong visual impact across all customer touchpoints.'
   },
   {
+    id: 'microsoft',
+    title: 'Microsoft',
+    category: 'UI/UX',
+    description: 'Collage-style ad layouts for Microsoft Edge native ads.',
+    imageUrl: 'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661927/Microsoft_image_xvjmls.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661927/Microsoft_project_details_1_ytkbec.jpg',
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661928/Microsoft_project_details_2_q1hfq7.jpg'
+    ],
+    year: '2023',
+    client: 'Microsoft',
+    role: 'UI/UX Design',
+    goals: ['Maximize impact', 'Maintain brand', 'Increase engagement'],
+    challenge: 'Standing out in competitive ad placements.',
+    solution: 'Modular ad components optimized for attention.',
+    fullStory: 'Designed for instant visual communication within the Edge ecosystem.'
+  },
+  {
+    id: 'starport',
+    title: 'Starport',
+    category: 'UI/UX',
+    description: 'Landing pages and web app interfaces for a real estate financing platform.',
+    imageUrl: 'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661929/Starport_image_twgscw.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661929/Starport_details_1_wkwhvq.jpg',
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661929/Starport_project_details_2_oocnnu.jpg'
+    ],
+    year: '2025',
+    client: 'Starport',
+    role: 'UI/UX Design',
+    goals: ['Improve clarity', 'Increase conversions', 'Build trust'],
+    challenge: 'Explaining complex financial processes simply.',
+    solution: 'Clean UI system with conversion-focused UX.',
+    fullStory: 'Balanced advanced tech with human-centered design for a fintech audience.'
+  },
+  {
+    id: 'racing',
+    title: 'Racing',
+    category: 'Branding',
+    description: 'Redesign a high-impact sales presentation to attract sponsors and advertising partners for a professional football club.',
+    imageUrl: 'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661925/club_el_ferrol_image_qxr3l6.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661923/club_el_ferrol_project_details_1_cu40z2.jpg',
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661923/club_el_ferrol_project_details_2_phwwj3.jpg'
+    ],
+    year: '2025',
+    client: 'Racing de Ferrol',
+    role: 'Presentation Design',
+    goals: ['Present sponsorship value clearly', 'Communicate modernity and dynamism', 'Appeal to senior decision-makers'],
+    challenge: 'Balancing business credibility with the emotional energy of football.',
+    solution: 'Dynamic presentation system with strong hierarchy and modern visuals.',
+    fullStory: 'Focused on clarity, energy, and sponsorship value for a top-tier football club.'
+  },
+  {
+    id: 'volcano-coffee',
+    title: 'Volcano COFFEE',
+    category: 'Packaging',
+    description: 'Premium coffee packaging design emphasizing quality and shelf impact.',
+    imageUrl: 'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661944/Volcano_image_yrt6m5.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661944/Volcano_project_details_1_rielg6.jpg',
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661946/Volcano_project_details_2_istydo.jpg'
+    ],
+    year: '2024',
+    client: 'Volcano King Coffee',
+    role: 'Packaging Design',
+    goals: ['Quality', 'Shelf impact', 'Premium appeal'],
+    challenge: 'Communicating quality without clutter.',
+    solution: 'Bold, refined packaging system.',
+    fullStory: 'Focused on authenticity and confidence to stand out in the premium coffee market.'
+  },
+  {
+    id: 'solomons',
+    title: 'Solomons',
+    category: 'Web Design',
+    description: 'Ecommerce website design for a flooring franchising business.',
+    imageUrl: 'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770045614/Flooring_Franchising_Ecommerce_Website_Design_1_ig8spu.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770045615/Flooring_Franchising_Ecommerce_Website_Design-1_1_gsmdzg.jpg',
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770045615/Flooring_Franchising_Ecommerce_Website_Design-2_1_xysmyb.jpg'
+    ],
+    year: '2023',
+    client: 'Solomons Flooring',
+    role: 'UI/UX Designer',
+    goals: ['Improve online product discovery', 'Support franchise inquiries', 'Optimize conversion paths'],
+    challenge: 'Designing for both customers and franchise partners in one platform.',
+    solution: 'Built a scalable ecommerce UX with structured navigation, product clarity, and conversion-focused layouts.',
+    fullStory: 'The project required balancing ecommerce usability with brand authority for a large franchising network.'
+  },
+  {
+    id: 'basegreens',
+    title: 'Basegreens',
+    category: 'Packaging',
+    description: 'Packaging for frozen health food product focused on convenience and visibility.',
+    imageUrl: 'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661923/Basegreens_image_s0tkyy.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661923/Basegreens_project_details_1_fhr057.jpg',
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661924/Basegreens_project_details_2_djaeqw.jpg'
+    ],
+    year: '2024',
+    client: 'Basegreens',
+    role: 'Packaging Design',
+    goals: ['Convenience', 'Nutrition', 'Shelf visibility'],
+    challenge: 'Balancing health and simplicity.',
+    solution: 'Clean, modern packaging design.',
+    fullStory: 'Emphasized everyday usability for the health-conscious consumer.'
+  },
+  {
+    id: 'creamer',
+    title: 'Creamer',
+    category: 'Packaging',
+    description: 'Pouch and box design for condensed milk serving wholesale and retail.',
+    imageUrl: 'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661947/Creamer_image_lf7v5g.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661925/Creamer_project_details_1_mkc2qq.jpg',
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661925/Creamer_project_details_2_jgc2av.jpg'
+    ],
+    year: '2024',
+    client: 'Confidential Brand',
+    role: 'Packaging Design',
+    goals: ['Natural quality', 'Multi-channel', 'Clarity'],
+    challenge: 'Serving wholesale and retail with a single look.',
+    solution: 'Flexible packaging system.',
+    fullStory: 'Ensured consistency across different formats for a seamless brand experience.'
+  },
+  {
+    id: 'kyalin',
+    title: 'Kyalin',
+    category: 'Packaging',
+    description: 'Unified packaging for protein products migrating two brands into one.',
+    imageUrl: 'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661928/Kyalin_image_xj2hux.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661927/Kyalin_project_details_1_mxiomy.jpg'
+    ],
+    year: '2024',
+    client: 'Kyalin',
+    role: 'Packaging Design',
+    goals: ['Brand merge', 'Trust', 'Clarity'],
+    challenge: 'Migrating two distinct brands into one cohesive identity.',
+    solution: 'Refined unified design system.',
+    fullStory: 'Built for long-term scalability and brand recognition in the health supplement sector.'
+  },
+  {
+    id: 'music-app',
+    title: 'Music App',
+    category: 'UI/UX',
+    description: 'Mobile entertainment app for music lovers with multi-generation appeal.',
+    imageUrl: 'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661928/Music_image_lphbsp.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661928/music_project_details_1_mcpiyo.jpg',
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661928/music_project_details_2_ijoyaz.jpg'
+    ],
+    year: '2023',
+    client: 'Independent Client',
+    role: 'Mobile UI/UX Design',
+    goals: ['Multi-generation appeal', 'Exploration', 'Engagement'],
+    challenge: 'Designing for diverse age groups.',
+    solution: 'Flexible UI system with immersive visuals.',
+    fullStory: 'Focused on rhythm and interaction flow to create a seamless listening experience.'
+  },
+  {
+    id: 'velluto-verde',
+    title: 'Velluto Verde',
+    category: 'UI/UX',
+    description: 'Luxury website for a streetwear and NFT startup merging fashion with digital culture.',
+    imageUrl: 'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661938/vellutoverde_image_su0lsc.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661938/vellutoverde_project_details_1_bhvbhr.jpg',
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661944/vellutoverde_project_details_2_te6byl.jpg'
+    ],
+    year: '2023',
+    client: 'Velluto Verde',
+    role: 'UI/UX Design',
+    goals: ['Exclusivity', 'Fashion & Web3', 'Community'],
+    challenge: 'Merging luxury with digital culture.',
+    solution: 'Bold editorial-style interface.',
+    fullStory: 'Inspired by vintage casino aesthetics to create a unique sense of exclusivity.'
+  },
+  {
+    id: 'rover-gin',
+    title: 'Rover Gin',
+    category: 'Packaging',
+    description: 'Colorful gin label inspired by island culture for social settings.',
+    imageUrl: 'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661929/Rover_image_wmusi4.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661929/Rover_project_details_1_bo0wmx.jpg'
+    ],
+    year: '2023',
+    client: 'Mauritius Gin',
+    role: 'Label Design',
+    goals: ['Stand out', 'Youth appeal', 'Cocktail use'],
+    challenge: 'Balancing fun with premium feel.',
+    solution: 'Vibrant, expressive label design.',
+    fullStory: 'Designed to capture the spirit of island culture and energy.'
+  },
+  {
+    id: 'iherb',
+    title: 'iHerb',
+    category: 'UI/UX',
+    description: 'Email templates for health and wellness products optimized for conversion.',
+    imageUrl: 'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661926/iherb_image_pkppzn.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661926/iherb_project_details_1_edzsxa.jpg',
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661927/iherb_project_details_2_dpoyft.jpg'
+    ],
+    year: '2021',
+    client: 'iHerb Brands',
+    role: 'Email Design',
+    goals: ['CTR', 'Brand consistency', 'Readability'],
+    challenge: 'Multiple product categories in one design.',
+    solution: 'Modular email system.',
+    fullStory: 'Optimized for conversion across massive global audiences.'
+  },
+  {
+    id: 'bbm',
+    title: 'BBM',
+    category: 'Branding',
+    description: 'Brochure for premium moving services focused on reliability and care.',
+    imageUrl: 'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661923/BBM_image_jmpgkg.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661923/BBM_project_details_2_anbify.jpg',
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661925/BBM_project_details_1_rszz0e.jpg'
+    ],
+    year: '2024',
+    client: 'Burly Boyz Moving',
+    role: 'Graphic Design',
+    goals: ['Trust', 'Professionalism', 'Sales support'],
+    challenge: 'Differentiating premium service in a commodity market.',
+    solution: 'Clean, confident brochure design.',
+    fullStory: 'Focused on reliability and care to justify premium positioning.'
+  },
+  {
+    id: 'ifs-cafe',
+    title: 'IFS Cafe',
+    category: 'Web Design',
+    description: 'Membership-based community website for therapists balancing warmth with professionalism.',
+    imageUrl: 'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661925/IFS_image_kquqiv.jpg',
+    galleryImages: [
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661925/IFS_project_details_1_id1pv3.jpg',
+      'https://res.cloudinary.com/dshgtdxb0/image/upload/v1770661926/IFS_project_details_2_j5tllz.jpg'
+    ],
+    year: '2024',
+    client: 'IFS Community Cafe',
+    role: 'Web Design',
+    goals: ['Trust', 'Engagement', 'Growth'],
+    challenge: 'Balancing warmth with professional credibility.',
+    solution: 'Calming, human-centered web experience.',
+    fullStory: 'Designed for emotional safety and clarity within a professional therapist network.'
+  },
+  {
     id: 'dimples',
     title: 'Dimples',
     category: 'Packaging',
@@ -100,11 +314,7 @@ export const PROJECTS: Project[] = [
     year: '2023',
     client: 'Dimples',
     role: 'Packaging Designer',
-    goals: [
-      'Clear product communication',
-      'Strong shelf visibility',
-      'User-friendly information hierarchy'
-    ],
+    goals: ['Clear product communication', 'Strong shelf visibility', 'User-friendly information hierarchy'],
     challenge: 'Explaining product benefits clearly while keeping the packaging visually clean and approachable.',
     solution: 'Designed the complete packaging system with clear typography, soft visuals, and structured information flow.',
     fullStory: 'The project required balancing softness and performance visually, ensuring instant understanding at first glance.'
@@ -121,11 +331,7 @@ export const PROJECTS: Project[] = [
     year: '2021',
     client: 'Confidential Client',
     role: 'UI/UX Designer',
-    goals: [
-      'Improve user navigation',
-      'Increase lead conversion',
-      'Simplify complex information'
-    ],
+    goals: ['Improve user navigation', 'Increase lead conversion', 'Simplify complex information'],
     challenge: 'Presenting complex insurance data without overwhelming the user.',
     solution: 'Created a clean UI/UX system with intuitive flows, clear CTAs, and accessible layouts.',
     fullStory: 'UX decisions were driven by user trust and readability, reducing friction across the journey.'
@@ -143,11 +349,7 @@ export const PROJECTS: Project[] = [
     year: '2021',
     client: 'Nagle Firm',
     role: 'Landing Page Designer',
-    goals: [
-      'Increase lead inquiries',
-      'Build trust instantly',
-      'Mobile-first optimization'
-    ],
+    goals: ['Increase lead inquiries', 'Build trust instantly', 'Mobile-first optimization'],
     challenge: 'Standing out in a competitive legal market while maintaining professionalism.',
     solution: 'Designed a conversion-focused landing page using strong hierarchy, testimonials, and trust signals.',
     fullStory: 'Every section was crafted to guide users toward action while reinforcing credibility.'
@@ -165,22 +367,13 @@ export const PROJECTS: Project[] = [
     year: '2023',
     client: 'Protection Plus',
     role: 'Label Designer',
-    goals: [
-      'Clear information hierarchy',
-      'Strong brand visibility',
-      'Regulatory-friendly layout'
-    ],
+    goals: ['Clear information hierarchy', 'Strong brand visibility', 'Regulatory-friendly layout'],
     challenge: 'Balancing regulatory requirements with visual appeal.',
     solution: 'Delivered a clean, structured label design that communicates trust and effectiveness.',
     fullStory: 'Precision and clarity guided every design decision to ensure instant readability.'
   }
 ];
 
-/**
- * ==========================================
- * 3. JOURNAL / BLOG POSTS
- * ==========================================
- */
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: 'b1',
@@ -191,131 +384,14 @@ export const BLOG_POSTS: BlogPost[] = [
     content: `
       <h2>Why Professional Design Is an Investment, Not a Cost</h2>
       <p><strong>How UI/UX, web, and packaging design directly impact sales, trust, and growth.</strong></p>
-      
       <h3>Introduction</h3>
-      <p>Many businesses treat design as an expense — something cosmetic added at the end. In reality, professional design is a business investment that directly affects customer trust, conversion rates, and long-term brand value. Whether it’s a website, mobile app, or product packaging, design influences how people decide to buy.</p>
-
-      <h3>How Design Shapes First Impressions</h3>
-      <p>Users form an opinion about a brand in less than 5 seconds. A poorly designed website or packaging instantly signals low quality, even if the product itself is great.</p>
-      <p>Professional design communicates:</p>
-      <ul>
-        <li><strong>Credibility</strong></li>
-        <li><strong>Trust</strong></li>
-        <li><strong>Attention to detail</strong></li>
-      </ul>
-      <p>This is often the difference between a user staying… or leaving.</p>
-
-      <h3>UI/UX Design Drives Conversions</h3>
-      <p>Good UI/UX design isn’t about trends — it’s about guiding users toward action.</p>
-      <p>Well-designed interfaces:</p>
-      <ul>
-        <li>Reduce confusion</li>
-        <li>Improve navigation</li>
-        <li>Increase form submissions and purchases</li>
-      </ul>
-      <p>When users understand what to do next, conversion rates naturally increase.</p>
-
-      <h3>Packaging Design Influences Buying Decisions</h3>
-      <p>In physical and eCommerce environments, packaging acts as a silent salesperson.</p>
-      <p>Strong packaging design:</p>
-      <ul>
-        <li>Differentiates your product on crowded shelves</li>
-        <li>Creates perceived value</li>
-        <li>Builds emotional connection with customers</li>
-      </ul>
-      <p>Premium design often allows brands to charge more without resistance.</p>
-
-      <h3>Design Reduces Long-Term Costs</h3>
-      <p>Investing in design early prevents:</p>
-      <ul>
-        <li>Costly redesigns</li>
-        <li>Confusing user flows</li>
-        <li>Poor customer retention</li>
-      </ul>
-      <p>A well-designed product scales better, performs better, and saves money over time.</p>
-
+      <p>Many businesses treat design as an expense — something cosmetic added at the end. In reality, professional design is a business investment that directly affects customer trust, conversion rates, and long-term brand value.</p>
       <h3>Conclusion</h3>
-      <p>Design is not decoration — it’s strategy. Businesses that invest in professional UI/UX, web, and packaging design gain trust faster, convert better, and grow stronger brands. The real cost isn’t hiring a designer — it’s not hiring one.</p>
-    `
-  },
-  {
-    id: 'b2',
-    title: 'How Good UI/UX Design Turns Visitors Into Customers',
-    date: 'Feb 28, 2024',
-    readTime: '5 min read',
-    excerpt: 'Why user experience is the key to higher conversions and business growth.',
-    content: `
-      <h2>How Good UI/UX Design Turns Visitors Into Customers</h2>
-      <p><strong>Why user experience is the key to higher conversions and business growth.</strong></p>
-
-      <h3>Introduction</h3>
-      <p>Getting traffic to your website or app is only half the battle. If users don’t understand your product, trust your brand, or enjoy the experience, they won’t convert. This is where UI/UX design plays a critical role.</p>
-
-      <h3>What UI/UX Design Really Means for Businesses</h3>
-      <p>UI (User Interface) is how your product looks. UX (User Experience) is how it works.</p>
-      <p>For businesses, this means:</p>
-      <ul>
-        <li>Clear messaging</li>
-        <li>Intuitive navigation</li>
-        <li>Smooth user journeys</li>
-      </ul>
-      <p>Good UI/UX removes friction between interest and action.</p>
-
-      <h3>Why Users Leave Badly Designed Websites</h3>
-      <p>Most users don’t complain — they simply leave.</p>
-      <p>Common UX problems include:</p>
-      <ul>
-        <li>Confusing layouts</li>
-        <li>Slow or cluttered pages</li>
-        <li>Unclear calls to action</li>
-      </ul>
-      <p>Each issue increases bounce rate and lowers trust.</p>
-
-      <h3>Design Builds Trust Before Sales Conversations</h3>
-      <p>Before a client contacts you, they judge your business silently.</p>
-      <p>Professional design communicates:</p>
-      <ul>
-        <li>Reliability</li>
-        <li>Competence</li>
-        <li>Brand maturity</li>
-      </ul>
-      <p>This trust makes users more willing to:</p>
-      <ul>
-        <li>Submit forms</li>
-        <li>Book calls</li>
-        <li>Complete purchases</li>
-      </ul>
-
-      <h3>Mobile-First UX Is No Longer Optional</h3>
-      <p>Most users now interact with brands on mobile first.</p>
-      <p>Mobile-optimized UI/UX:</p>
-      <ul>
-        <li>Improves accessibility</li>
-        <li>Increases engagement</li>
-        <li>Prevents lost sales</li>
-      </ul>
-      <p>Designing for mobile is designing for reality.</p>
-
-      <h3>Measuring the Business Impact of UX</h3>
-      <p>Good UX design leads to:</p>
-      <ul>
-        <li>Higher conversion rates</li>
-        <li>Longer session times</li>
-        <li>Better customer retention</li>
-      </ul>
-      <p>Design decisions backed by user behavior deliver measurable ROI.</p>
-
-      <h3>Conclusion</h3>
-      <p>UI/UX design isn’t about aesthetics — it’s about results. When your product is easy to use, clear, and enjoyable, customers stay longer, trust faster, and convert more often.</p>
+      <p>Design is not decoration — it’s strategy. Businesses that invest in professional UI/UX, web, and packaging design gain trust faster, convert better, and grow stronger brands.</p>
     `
   }
 ];
 
-/**
- * ==========================================
- * 4. TESTIMONIALS
- * ==========================================
- */
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't1',
@@ -332,21 +408,5 @@ export const TESTIMONIALS: Testimonial[] = [
     author: "Keith Mullin",
     role: "Product Developer",
     company: "Make Ideas"
-  },
-  {
-    id: 't3',
-    title: "Unparalleled Creativity",
-    quote: "Abdel brings a level of strategic thinking to packaging that is rare. He doesn't just make it look good; he makes it sell.",
-    author: "Sarah Jenkins",
-    role: "Marketing Director",
-    company: "Bionic Toys"
-  },
-  {
-    id: 't4',
-    title: "Clean and Professional",
-    quote: "The ecommerce solution Abdel provided for our flooring business transformed our online presence and significantly boosted our leads.",
-    author: "David Solomon",
-    role: "Managing Director",
-    company: "Solomons Flooring"
   }
 ];
